@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8">
+  <title>Chaqaloq Me'yorlari | Болалар меъёрлари</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      max-width: 600px;
+      margin: auto;
+      padding: 20px;
+      background-color: #f9f9f9;
+      color: #333;
+    }
+    h2 {
+      text-align: center;
+    }
+    label, input, button {
+      display: block;
+      width: 100%;
+      margin: 10px 0;
+      font-size: 16px;
+    }
+    input, button {
+      padding: 10px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+    button {
+      background-color: #4CAF50;
+      color: white;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #45a049;
+    }
+    .result {
+      background-color: #fff;
+      padding: 15px;
+      border-radius: 8px;
+      box-shadow: 0 0 5px rgba(0,0,0,0.1);
+    }
+    .footer {
+      margin-top: 30px;
+      padding-top: 15px;
+      border-top: 1px solid #ddd;
+      text-align: center;
+      font-size: 14px;
+      color: #555;
+    }
+    .footer a {
+      color: #0077cc;
+      text-decoration: none;
+    }
+    .footer a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Chaqaloq me'yorlari / Болалар меъёрлари</h2>
+
+  <label for="age">Yoshni kiriting (masalan: 5 kun yoki 3 oy):<br>Ёшни киритинг (масалан: 5 кун ёки 3 ой):</label>
+  <input type="text" id="age" placeholder="Masalan: 3 oy yoki 7 kun">
+
+  <button onclick="showInfo()">Ko‘rsatish / Кўрсатиш</button>
+
+  <div class="result" id="result"></div>
+
+  <div class="footer">
+    📢 <strong>Telegram kanalimizga obuna bo‘ling:</strong><br>
+    📢 <strong>Телеграм каналига обуна бўлинг:</strong><br>
+    👉 <a href="https://t.me/sv_medical" target="_blank">@sv_medical</a>
+  </div>
+
+  <script>
+    function showInfo() {
+      const input = document.getElementById('age').value.toLowerCase();
+      const result = document.getElementById('result');
+      let output = '';
+
+      if (input.includes('kun') || input.includes('кун')) {
+        const days = parseInt(input);
+        if (days <= 7) {
+          output = 
+            <strong>🍼 Yangi tug‘ilgan chaqaloq (1–7 kun):<br>🍼 Янги туғилган чақалоқ (1–7 кун):</strong><br><br>
+            • Vazni: 2.5–4.5 kg<br>• Вазни: 2.5–4.5 кг<br>
+            • Dastlabki emlash: BCG, Gepatit B<br>• Дастлабки эмлаш: BCG, Гепатит B<br>
+            • Ona suti bilan oziqlantirish muhim<br>• Она сути билан озиқлантириш муҳим<br><br>
+            <strong>Tavsiya:<br>Тавсия:</strong><br>
+            Pediatr ko‘rigiga boring, chaqaloqni iliq saqlang.<br>
+            Педиатр кўригига боринг, чақалоқни илиқ сақланг.
+          ;
+        } else {
+          output = "Iltimos, 1–7 kun oralig‘ida kiriting.<br>Илтимос, 1–7 кун оралиғида киритинг.";
+        }
+      } else if (input.includes('oy') || input.includes('ой')) {
+        const months = parseInt(input);
+        switch (months) {
+          case 1:
+            output = 
+              <strong>📅 1 oylik chaqaloq:<br>📅 1 ойлик чақалоқ:</strong><br><br>
+              • Vazni: ~4–5 kg<br>• Вазни: ~4–5 кг<br>
+              • Bo‘yi: ~52–56 sm<br>• Бўйи: ~52–56 см<br>
+              • Ko‘z bilan ergashish boshlanadi<br>• Кўз билан эргашиш бошланади<br><br>
+              <strong>Tavsiya:<br>Тавсия:</strong><br>
+              Ona suti berishni davom ettiring, issiqlikka e’tibor bering.<br>
+              Она сути беришни давом эттиринг, иссиқликка эътибор беринг.
+            ;
+            break;
+          case 3:
+            output = `
+              <strong>👶 3 oylik chaqaloq:<br>👶 3 ойлик чақалоқ:</strong><br><br>
+              • Vazni: ~5.5–6.5 kg<br>• Вазни: ~5.5–6.5 кг<br>
+              • Bo‘yi: ~58–62 sm<br>• Бўйи: ~58–62 см<br>
+              • Kuladi, tovushga javob qaytaradi<br>• Кулади, товушга жавоб қайтаради<br><br><strong>Tavsiya:<br>Тавсия:</strong><br>
+              Har kuni qorinda yotqizing, o‘yinchoqlar bilan o‘ynating.<br>
+              Ҳар куни қоринда ётқизинг, ўйинчоқлар билан ўйнатинг.
+            ;
+            break;
+          case 6:
+            output = 
+              <strong>🍽 6 oylik chaqaloq:<br>🍽 6 ойлик чақалоқ:</strong><br><br>
+              • Vazni: ~7–8 kg<br>• Вазни: ~7–8 кг<br>
+              • Qattiq ovqatga o‘rganish boshlanadi<br>• Қаттиқ овқатга ўрганиш бошланади<br><br>
+              <strong>Tavsiya:<br>Тавсия:</strong><br>
+              Allergensiz pyure, suv taklif qilishni boshlang.<br>
+              Аллергиясиз пюре, сув таклиф қилишни бошланг.
+            ;
+            break;
+          case 12:
+            output = 
+              <strong>🎉 1 yoshli bola:<br>🎉 1 ёшли бола:</strong><br><br>
+              • Vazni: ~9–10.5 kg<br>• Вазни: ~9–10.5 кг<br>
+              • Mustaqil yurishni boshlaydi<br>• Мустақил юришни бошлайди<br>
+              • Bir necha so‘z ayta oladi<br>• Бир неча сўз айта олади<br><br>
+              <strong>Tavsiya:<br>Тавсия:</strong><br>
+              Rivojlantiruvchi o‘yinlar, xavfsizlik choralari muhim.<br>
+              Ривожлантирувчи ўйинлар, хавфсизлик чоралари муҳим.
+            `;
+            break;
+          default:
+            output = "Bu yosh uchun hozircha ma'lumot mavjud emas.<br>Бу ёш учун ҳозирча маълумот мавжуд эмас.";
+        }
+      } else {
+        output = "Iltimos, yoshni 'kun' yoki 'oy' deb yozing.<br>Илтимос, ёшни 'кун' ёки 'ой' деб ёзинг.";
+      }
+
+      result.innerHTML = output;
+    }
+  </script>
+
+</body>
+</html
